@@ -7,7 +7,7 @@ import { Student , teacher , Clssroom, classSt} from '@prisma/client';
 
 export const getAllStudent =async(req:Request,res:Response)=>{
     try{
-    const Studen= await prisma.Student.findMany(); // ارجاع قيم جميع الطلاب بدون شرط 
+    const Studen= await prisma.student.findMany(); // ارجاع قيم جميع الطلاب بدون شرط 
     return res.status(200).json(Studen)}
     catch(error){
         return res.status(400).json({ message:"is not work "})
@@ -16,9 +16,9 @@ export const getAllStudent =async(req:Request,res:Response)=>{
 
 export const PostStudent =async(req:Request,res:Response)=>{
     try{
-        const Newteacher = req.body as studentType['body']
-      await prisma.Student.create({  // اضافة عضو جديد 
-        data:Newteacher // البيانات المرسله 
+        const Newteacher = req.body as studentType["body"]
+      await prisma.student.create({  // اضافة عضو جديد 
+        data:Newteacher ,// البيانات المرسله 
      })
 
 
@@ -34,7 +34,7 @@ export const PostStudent =async(req:Request,res:Response)=>{
 export const getoneStudent =async(req:Request,res:Response)=>{
     try{
         const {id}=req.params as studentType["params"]
-    const Studen= await prisma.Student.findFirst({      //البحث في الجدول 
+    const Studen= await prisma.student.findFirst({      //البحث في الجدول 
         where: { id },
     });
     return res.status(200).json(Studen)}
@@ -62,7 +62,7 @@ export const getAllTeacher =async(req:Request,res:Response)=>{
 
 export const PostTeacher =async(req:Request,res:Response)=>{
     try{
-        const NewStudent = req.body as TeacherType['body']
+        const NewStudent = req.body as teacher
       await prisma.teacher.create({  // اضافة عضو جديد 
         data:NewStudent // البيانات المرسله 
      })
@@ -103,8 +103,8 @@ export const getAllclass =async(req:Request,res:Response)=>{
 
 export const PostClass =async(req:Request,res:Response)=>{
     try{
-        const NewClass = req.body as classromType['body']
-      await prisma.teacher.create({  // اضافة طالب جديد 
+        const NewClass = req.body as Clssroom
+      await prisma.clssroom.create({  // اضافة طالب جديد 
         data:NewClass // البيانات المرسله 
      })
 
