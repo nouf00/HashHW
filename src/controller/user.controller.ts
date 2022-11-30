@@ -6,7 +6,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import  argon2d from 'argon2';
 
 export const postUserLogin=async(req:Request,res:Response)=>{
-try{
+
 const {email , password,name}=req.body as User
 const user = await prisma.User.findUnique({
   where: { name },
@@ -35,7 +35,7 @@ return res.status(200).json({ message: "يالله حيهم" });
 
 
 
-
+}
 
 //_____________________________________________________________________________
 export const postUserrigester= async(req:Request,res:Response)=>{
@@ -55,5 +55,6 @@ return res.status(200).json({ message: "Maprok" });
     return res.status(400).json({ message: prismaError.message });
   
     }
-}
 
+
+  }
